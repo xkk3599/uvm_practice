@@ -1,0 +1,3 @@
+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
+git config --global http.postBuffer 524288000
+git remote set-url origin https://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@github.com/xkk3599/uvm_practice.git
