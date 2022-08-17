@@ -1,16 +1,17 @@
-#!/bin/csh
-if ( $SIM_TOOL == "QUESTA" ) then
+#!/bin/bash
+if [ $SIM_TOOL == "QUESTA" ]; then
 vlib work
 vlog -f filelist.f
 vsim -sv_lib $UVM_DPI_DIR/uvm_dpi -do $WORK_HOME/bin/vsim.do -c top_tb
-endif
+fi
 
-if ( $SIM_TOOL == "VCS" ) then
-vcs -sverilog $UVM_HOME/src/dpi/uvm_dpi.cc -CFLAGS -DVCS -timescale=1ns/1ps -f filelist.f 
+if [ $SIM_TOOL == "VCS" ]; then
+vcs -full64 -sverilog $UVM_HOME/src/dpi/uvm_dpi.cc -CFLAGS -DVCS -timescale=1ns/1ps -f filelist.f 
 ./simv 
-endif
+fi
 
-if ( $SIM_TOOL == "NCSIM" ) then
+if [ $SIM_TOOL == "NCSIM" ]; then
 ncverilog +sv -f filelist.f -licqueue -timescale 1ns/1ps -uvm -uvmhome $UVM_HOME 
-endif
+fi
+
 
